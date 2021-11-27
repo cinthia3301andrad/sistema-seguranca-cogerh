@@ -55,10 +55,10 @@ export function Dashboard(){
                     <div className="row">
                         <div className="coluna-1">
                             <ComponentStatus title="Em alerta" status="alerta" />
-                            <ComponentSquare title="Seguranças Ativos" number={24}/> 
+                            <ComponentSquare style={{height: '300px'}} title="Seguranças Ativos" number={24}/> 
                         </div>
                         <div className="coluna-2">
-                            <ComponentSquare title="Total de Ocorrências" number={323}/> 
+                            <ComponentSquare style={{height: '200px'}} title="Total de Ocorrências" number={323}/> 
                             <ComponentSquareGraph/>
                         </div>
                         <div className="coluna-3">

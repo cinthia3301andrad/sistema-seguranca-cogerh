@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
+
 export const GlobalStyle = createGlobalStyle`
+@import '~antd/dist/antd.css';
 :root{
     --background: #EBF7FD;
     

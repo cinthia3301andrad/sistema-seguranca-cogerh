@@ -2,7 +2,7 @@ import { Container,Details} from "./styles";
 import { GoAlert } from "react-icons/go";
 import {useState} from 'react'
 
-interface NotificacaoInvasaoProps {
+interface NotificacaoDeviceProps {
   local: string;
   onOpenModal: () => void;
 }
@@ -26,7 +26,7 @@ const backdropVariants = {
 };
 
 
-export function NotificacaoInvasao({local, onOpenModal}: NotificacaoInvasaoProps){
+export function NotificacaoDevice({local, onOpenModal}: NotificacaoDeviceProps){
 
   const [detailsActive, setDetailsActive] = useState(false)
   
