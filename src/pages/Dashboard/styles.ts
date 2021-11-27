@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { RingProgress } from '@ant-design/charts';
 
 export const Container = styled.div`
   height: 120vh;

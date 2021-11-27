@@ -57,7 +57,8 @@ export function ComponentSquareGraph(){
     data,
     yField: 'ocorrencias',
     xField: 'mes',
-    autoFit: true
+    autoFit: true,
+    colors: ['#0F5481'],
   };
 
   return (

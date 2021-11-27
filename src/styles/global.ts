@@ -35,8 +35,7 @@ export const GlobalStyle = createGlobalStyle`
       }  
     }
     body {
-      background: rgb(238,247,255);
-        background: linear-gradient(177deg, rgba(238,247,255,1) 0%, rgba(206,235,250,1) 100%); 
+      background: linear-gradient(177deg, rgba(238,247,255,1) 0%, rgba(206,235,250,1) 100%); 
         -webkit-font-smoothing: antialiased;
     }
     body, input, textarea, button {

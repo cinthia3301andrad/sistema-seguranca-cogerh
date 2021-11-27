@@ -2,12 +2,21 @@ import { Header } from '../../components/header'
 import { ComponentStatus, ComponentSquare, ComponentSquarePercent, ComponentSquareGraph } from '../../components/squares'
 import { Container, Main } from './styles'
 import { NotificacaoInvasao } from '../../components/NotificacaoInvasao'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ModalOcorrencia } from '../../components/ModalOcorrencia';
 import { motion } from 'framer-motion';
-
+import { NotificacaoDevice } from '../../components/NotificacaoDevice'
 
 export function Dashboard(){
+    const [widthScreen, setWidthScreen] = useState(window.innerWidth)
+
+    useEffect(() => {
+        function handleResize() {
+            setWidthScreen(window.innerWidth)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
     const [isModalOpen, setIsModalOpen] = useState(false);
     function handleOpenModal() {
         setIsModalOpen(true);
@@ -34,7 +43,11 @@ export function Dashboard(){
                         className="alert"
         
                         >
+                        {widthScreen > 650 ? 
                         <NotificacaoInvasao local="Perto do Canal" onOpenModal={handleOpenModal}/>
+                        :
+                        <NotificacaoDevice local="Perto do Canal" onOpenModal={handleOpenModal} />}
+                        
                     </motion.li>
                     <motion.li
                         initial={{ opacity: 0, translateY: -100 }}

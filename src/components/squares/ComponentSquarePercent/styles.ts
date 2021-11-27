@@ -21,9 +21,17 @@ export const Container = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     color: var(--blue);
+    margin-bottom: 0;
   }
-
+  
   .g2-html-annotation {
-    white-space: break-spaces !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #1b5c87 !important;
+  }
+  
+  p {
+    font-size: 14px;
+    color: var(--dark);
   }
 `; 

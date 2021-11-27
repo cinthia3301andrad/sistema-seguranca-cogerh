@@ -38,17 +38,21 @@ export function NotificacaoDevice({local, onOpenModal}: NotificacaoDeviceProps){
   return (
     <Container>
       <div className="content">
-        <div className="left-comp">
-          <GoAlert color="#ff9853"/>
-          <div className="text">
-            <h1>Alerta de Ocorrência!</h1>
-            <h2><b>Local: </b>{local}</h2>
+        <div className="content-alert">
+          <div className="left-comp">
+            <GoAlert color="#ff9853"/>
+          </div>
+  
+          <div className="right-comp">
+            <div className="text">
+              <h1>Alerta de Ocorrência!</h1>
+              <h2><b>Local: </b>{local}</h2>
+            </div>
+            <h2>13:54 - <b>10 de Novembro de 2021</b></h2>
           </div>
         </div>
-
-        <div className="right-comp">
-          <h2>13:54 - <b>10 de Novembro de 2021</b></h2>
-          <button onClick={playExpandingAnimation}>Abrir Detalhes</button>
+        <div className="content-botao">
+          <button onClick={playExpandingAnimation}>{detailsActive ? "Fechar detalhes" : "Abrir detalhes"}</button>
         </div>
       </div>
       <Details
@@ -61,12 +65,11 @@ export function NotificacaoDevice({local, onOpenModal}: NotificacaoDeviceProps){
         <h2>Detalhes da ocorrência</h2>
         <div>
           <p>
-            Possível invasor localizado em: <strong>{local}</strong> a '30m' de distancia.
+            Localização: <strong>{local}</strong> a <strong>30 metros</strong> de distância.
            
           </p>
-          <p>Altura do invasor:  <strong>tantos metros de altura</strong> </p>
-           <p> Nível de invasão:  <strong>90% de chances de ser um perigo</strong> </p>
-            <p>Aconselhamos que tome medidas cabíveis para tal situação.</p>
+          <p>Altura do invasor:  <strong><strong>1 metro</strong> de altura</strong> </p>
+          <p> Nível de invasão:  <strong>90% de chances de ser um perigo</strong> </p>
         </div>
         <div className="relatar-ocorrencia">
           <button onClick={onOpenModal}>RELATAR OCORRÊNCIA</button>

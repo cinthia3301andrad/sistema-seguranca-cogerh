@@ -38,7 +38,6 @@ export const Details = styled(motion.div)`
     background: rgba(182, 233, 254, 0.4);
     color: rgba(15, 84, 129, 0.99);
     font-family: 'Roboto Condensed', sans-serif;
-    width: 25%;
     font-weight: 700;
     padding: 0.4rem;
     &:hover {
@@ -60,66 +59,62 @@ export const Container = styled.div`
     padding: 1.5rem;
     border-radius: 12px;
     width: 100%;
-   
-    height: 90px;
-
-    display: flex;
-    justify-content: space-between;
-
-  }
-
-  .right-comp {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
-
-    h2 {
-      font-size: 14px;
-      color: white;
-      b {
-        color: var(--blue-200);
+    
+    .content-botao {
+      display: flex;
+      justify-content: end;
+      
+      button {
+        margin-top: 10px;
+        background: transparent;
+        border: none;
+        color: #FF9248;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-align: right;
       }
-    }
-
-    button {
-      margin-top: 10px;
-      background: transparent;
-      border: none;
-      color: #FF9248;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-  }
-
-  .left-comp {
-    display: flex;
-    align-items: center;
-
-    svg {
-      width: 42px;
-      height: 42px;
-    }
-    h1 {
-      color: white;
-      font-size: 20px;
-      padding-bottom: .2rem;
     }
     
-    h2 {
-      font-size: 14px;
-      color: white;
-      b {
-        color: var(--blue-200);
+    .content-alert {
+      display: flex;
+      .right-comp {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        h1 {
+          color: white;
+          font-size: 20px;
+          padding-bottom: .2rem;
+          margin-bottom: 0;
+        }
+        
+        h2 {
+          font-size: 14px;
+          color: white;
+          margin-bottom: 0;
+          b {
+            color: var(--blue-200);
+          }
+        }
       }
-    }
-
-    svg {
-      color: #FF9248;
-      font-size: 54px;
-      margin-right: 1.2rem;
+    
+      .left-comp {
+        display: flex;
+        align-items: center;
+      
+        svg {
+          color: #FF9248;
+          font-size: 54px;
+          margin-right: 1.2rem;
+          width: 42px;
+          height: 42px;
+        }
+      }
     }
   }
 `; 
