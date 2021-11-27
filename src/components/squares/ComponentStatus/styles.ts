@@ -16,7 +16,6 @@ export const Container = styled.div<StatusProps>`
   };
   padding: 1.2rem;
   width: 100%;
-  max-width: 200px;
   height: 200px;
   border-radius: 12px;
 

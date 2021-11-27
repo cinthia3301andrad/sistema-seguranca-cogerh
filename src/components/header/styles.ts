@@ -5,7 +5,7 @@ export const Container = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 3rem;
+  padding: 3rem 3rem;
   height: 100px;
 
   h1 { 
@@ -34,16 +34,37 @@ export const Container = styled.header`
 `; 
 
 export const NavBar = styled.nav`
+  display: flex;  
   
-  border-bottom: 2px solid #D6D6D6;
-  padding: 0.5rem 0 0.5rem 1rem;
+  border-bottom: 1.5px solid #D6D6D6;
+  padding: 0.5rem 0rem -1px 0rem;
   a {
     color: #12252F;
     font-weight: 500;
+    &:hover {
+      color: #254E63;
+    }
   }
 
-  a:not(last-child){
+
+/*   a:not(last-child){
     margin-right: 2rem;
-  }
+  } */
   
 `; 
+
+type PropsButtonNav = {
+  active: boolean;
+}
+export const ButtonNav = styled.div<PropsButtonNav>`
+  
+  margin-top: 10px;
+  padding: 0.5rem 1rem 7px 1rem;
+  margin: 0;
+  border-bottom:  ${props => 
+      props.active ? '3px solid #0093DD': 'none'
+     
+  };
+
+`; 
+

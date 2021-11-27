@@ -10,7 +10,6 @@ export const Container = styled.div`
   border-top: .5rem solid var(--blue-500);
   border-radius: 1.2rem;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   height: 420px;
   display: flex;
@@ -22,5 +21,9 @@ export const Container = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     color: var(--blue);
+  }
+
+  .g2-html-annotation {
+    white-space: break-spaces !important;
   }
 `; 

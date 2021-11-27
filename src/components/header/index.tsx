@@ -2,22 +2,34 @@ import { Link } from "react-router-dom";
 
  import { BsCalendar3 } from 'react-icons/bs'
 
-import { Container, NavBar } from "./style";
+import { Container, NavBar, ButtonNav } from "./styles";
 
-export function Header(){
+interface HeaderProps {
+  activeScreen: string;
+}
+
+export function Header({activeScreen}: HeaderProps){
   return (
       <Container>
         <h1>SISTEMA DE MONITORAMENTO</h1>
         <NavBar>
-          <Link to="/dashboard">
-            Dashboard
-          </Link>
-          <Link to="/relatorio">
-            Relatório
-          </Link>
-          <Link to="/outracoisa">
-            Outra coisa
-          </Link>
+          <ButtonNav active={activeScreen ==="dashboard"? true : false}>
+            <Link to="/dashboard">
+              Dashboard
+            </Link>
+          </ButtonNav>
+          <ButtonNav  active={activeScreen ==="relatorio"? true : false}>
+            <Link to="/relatorio">
+              Relatório
+            </Link>
+          </ButtonNav>
+          <ButtonNav  active={activeScreen ==="outracoisa"? true : false}>
+            <Link to="/outracoisa">
+              Outra coisa
+            </Link>
+          </ButtonNav>
+        
+      
         </NavBar>
         <div className="calendar">
           <p>

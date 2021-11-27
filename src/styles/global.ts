@@ -60,7 +60,7 @@ export const GlobalStyle = createGlobalStyle`
       align-items:center;
       justify-content: center;
 
-      background: var(--blue-200);
+      background: rgba(235, 247, 253, 0.9);
 
       position: fixed;
       top: 0;
@@ -69,22 +69,33 @@ export const GlobalStyle = createGlobalStyle`
       left: 0;
     }
     .react-modal-content {
-      width:100% ;
-      max-width: 576px;
-     
-      background: var(--background);
+      width:90% ;
+      max-width: 600px;
+      height: 80%;
+      max-height: 500px;
+      background: #fff;
       padding: 3rem;
       position: relative;
-      border-radius: 0.25rem;
+      border-radius: 1rem;
+      box-shadow: 1px 1px 8px #E5E5E5;
     }
     .react-modal-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      border: 2px solid #E5E5E5;
+      width: 29px;
+      height: 29px;
+      background: transparent;
+
       position: absolute;
       right: 1.5rem;
       top: 1.5rem;
-      border: 0;
-      background: transparent;
       
+      padding: 0.5rem;
       transition: filter 0.3s;
+      border: 0;
       &:hover {
         filter: brightness(0.7);
       }
