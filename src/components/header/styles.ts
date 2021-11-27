@@ -10,25 +10,37 @@ export const Container = styled.header`
 
   h1 { 
     color: #12252F;
-
-    font-size: 1.5rem;
-    font-family: Roboto;
+    font-size: 1.2rem;
+ 
+    font-family: 'Roboto';
+    @media (max-width: 600px){
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      font-size: 1rem;
+    }
   }
   .calendar {
     display: flex;
     align-items: center;
 
+    width: auto;
 
     padding: 0.5rem 0.7rem;
     border: 1px solid #D8D8D8;
     box-sizing: border-box;
     border-radius: 5px;
     p {
+      margin: 0;
       font-size: 0.9rem;
       margin-right: 8px;
       font-weight: 500;
       color: #12252F;
 
+    }
+    @media (max-width: 600px){
+        display: none;
     }
   }
 `; 
@@ -38,6 +50,10 @@ export const NavBar = styled.nav`
   
   border-bottom: 1.5px solid #D6D6D6;
   padding: 0.5rem 0rem -1px 0rem;
+
+  @media (max-width: 600px){
+        display: none;
+    }
   a {
     color: #12252F;
     font-weight: 500;

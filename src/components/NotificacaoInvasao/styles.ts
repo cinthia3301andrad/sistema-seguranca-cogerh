@@ -83,7 +83,7 @@ export const Container = styled.div`
     }
 
     button {
-      margin-top: 10px;
+      margin-top: 5px;
       background: transparent;
       border: none;
       color: #FF9248;

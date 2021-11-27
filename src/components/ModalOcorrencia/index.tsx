@@ -36,18 +36,24 @@ export function ModalOcorrencia({isOpen, onRequestClose, ocorrencia }: ModalProp
 
                 <div className="column">
                     <div>
-                        <label>Nome do vigilante:</label>
+                        <label>Nome do vigilante: *</label>
                         <input type="text" />
                     </div>
                     <div>
-                        <label> Como você classifica essa ocorrência?:</label>
-                        <input type="text" />
+                        <label> Como você classifica essa ocorrência? *</label>
+                        <ul className="input-radio">
+                            <li><input type="radio" value="MALE" name="gender"/> <p>Sem perigo</p></li>
+                            <li><input type="radio" value="MALE" name="gender"/> <p>Suspeira de invasão</p></li>
+                            <li><input type="radio" value="MALE" name="gender"/> <p>Invasão</p></li>
+                        </ul>
                     </div>
                 </div>
-                <div>
-                    <label >Nome do vigilante:</label>
-                    <input type="text" />
+                <div className="textarea">
+                    <label >Descrição da ocorrência: *</label>
+                    <textarea />
                 </div>
+
+                <button className="enviar">Enviar</button>
 
             </ContentForm>
   

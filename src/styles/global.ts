@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import 'antd/dist/antd.css';
 export const GlobalStyle = createGlobalStyle`
 :root{
     --background: #EBF7FD;
@@ -61,7 +61,7 @@ export const GlobalStyle = createGlobalStyle`
       justify-content: center;
 
       background: rgba(235, 247, 253, 0.9);
-
+      z-index: 100000;
       position: fixed;
       top: 0;
       bottom: 0;
@@ -70,9 +70,8 @@ export const GlobalStyle = createGlobalStyle`
     }
     .react-modal-content {
       width:90% ;
-      max-width: 600px;
-      height: 80%;
-      max-height: 500px;
+      max-width: 725px;
+   
       background: #fff;
       padding: 3rem;
       position: relative;
