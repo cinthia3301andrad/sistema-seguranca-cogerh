@@ -36,7 +36,7 @@ export function Dashboard(){
                         >
                         <NotificacaoInvasao local="Perto do Canal" onOpenModal={handleOpenModal}/>
                     </motion.li>
-                 {/*    <motion.li
+                 <motion.li
                         initial={{ opacity: 0, translateY: -100 }}
                         animate={{ opacity: 1, translateY: 0 }}
                         transition={{
@@ -49,7 +49,7 @@ export function Dashboard(){
                         >
                         <NotificacaoInvasao local="Perto do Canal" onOpenModal={handleOpenModal}/>
                     </motion.li>
-                */}
+             
                        
                     </ul>
                     <div className="row">
