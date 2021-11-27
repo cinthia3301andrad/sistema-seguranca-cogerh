@@ -6,8 +6,6 @@ import { Relatorio } from './pages/Relatorio';
 import { GlobalStyle } from "./styles/global";
 
 function App() {
-
-
   return (
     <>
       <GlobalStyle />

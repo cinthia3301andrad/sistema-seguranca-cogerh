@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { RingProgress } from '@ant-design/charts';
 
 export const Container = styled.div`
   height: 120vh;
@@ -33,6 +32,7 @@ export const Main = styled.div`
   align-items: center;
 
   width: 100%;
+  overflow: hidden;
 
   .colunas {
     display: flex;
@@ -58,6 +58,8 @@ export const Main = styled.div`
 
     margin-top: 30px;
     width: 100%;
+    
+    gap: 1rem;
   
   }
   .coluna-1, .coluna-2, .coluna-3 { 
@@ -67,7 +69,6 @@ export const Main = styled.div`
   }
   .coluna-2 { 
     flex: 2;
-    margin: 0 15px;
   }
   .coluna-3 { 
     min-width: 290px;
