@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 120vh;
+  height: auto;
 
   li { 
     list-style: none;
@@ -13,15 +13,6 @@ export const Container = styled.div`
       &:nth-child(2) {
         margin-top: 20px;
       }}
-  /*   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-/* 
-  .grid-header { grid-area: header; }
-  .grid-coluna-1 { grid-area: left; }
-  .grid-coluna-2 { grid-area: center; }
-  .grid-coluna-3 { grid-area: right; } */
 
 `; 
 
@@ -40,15 +31,6 @@ export const Main = styled.div`
 
     width: 80%;
     max-width: 1000px;
-  /*   display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-areas:
-    'header header header none'
-    'left center center right';
-    grid-gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr;  */
-
     
   }
   .row {
@@ -67,11 +49,20 @@ export const Main = styled.div`
     flex-direction: column;
     flex: 1;
   }
+  .coluna-1 { 
+    max-width: 250px;
+  }
   .coluna-2 { 
+    max-width: 400px;
     flex: 2;
   }
   .coluna-3 { 
-    min-width: 290px;
+    min-width: 315px;
     
+  }
+  @media (max-width: 600px){
+    .coluna-1, .coluna-2, .coluna-3 { 
+      width: 95%; 
+    }
   }
 `; 

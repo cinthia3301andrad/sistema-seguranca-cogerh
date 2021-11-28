@@ -34,4 +34,15 @@ export const Container = styled.div`
     font-size: 14px;
     color: var(--dark);
   }
+
+  @media (max-width: 600px){
+    height: 350px;
+        h2 {
+        font-size: 1.2rem;
+      
+      }
+      p {
+        font-size: 1rem;
+  }
+    }
 `; 

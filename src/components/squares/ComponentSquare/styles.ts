@@ -4,7 +4,6 @@ export const Container = styled.div`
   background: white;
   text-align: center;
 
-  margin-bottom: 1rem;
 
   padding: 1.2rem;
   border-top: .5rem solid var(--blue-500);
@@ -31,4 +30,10 @@ export const Container = styled.div`
   h1, h2 {
     color: var(--blue);
   }
+  @media (max-width: 600px){
+        h2 {
+        font-size: 1.2rem;
+      
+       }
+    }
 `; 

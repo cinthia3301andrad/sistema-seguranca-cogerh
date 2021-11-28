@@ -63,7 +63,7 @@ export function ComponentSquareGraph(){
 
   return (
     <Container>
-        <h2>ÚLTIMOS ALERTAS</h2>
+        <h2>GRÁFICO DE OCORRÊNCIAS</h2>
         <Line {...config} />;
     </Container>
   )

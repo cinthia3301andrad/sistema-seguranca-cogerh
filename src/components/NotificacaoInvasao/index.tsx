@@ -1,14 +1,24 @@
-import { Container,Details} from "./styles";
+import {useRef, useState} from 'react';
 import { GoAlert } from "react-icons/go";
 import { CgDanger } from "react-icons/cg";
-import audio from '../../assets/alert.mp3';
-import {useRef, useState} from 'react';
 
+import audio from '../../assets/alert.mp3';
+
+import {CircleNotifications} from '../CircleNotifications'
+
+import { Container,Details} from "./styles";
 
 interface NotificacaoInvasaoProps {
-  local: string;
+  qtd: number;
+  infos: {
+    local: string,
+    data: Date,
+    altura?: number,
+    distancia?: number,
+    perigo?: number
+  };
   onOpenModal: () => void;
-  type: 'pir' | 'ultra';
+  type: string;
 }
 
 const expandingTransition = {
@@ -30,7 +40,7 @@ const backdropVariants = {
 };
 
 
-export function NotificacaoInvasao({local, onOpenModal, type}: NotificacaoInvasaoProps){
+export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoInvasaoProps){
   const audioRef = useRef<HTMLAudioElement>(null);
   
   const [detailsActive, setDetailsActive] = useState(false)
@@ -54,14 +64,17 @@ export function NotificacaoInvasao({local, onOpenModal, type}: NotificacaoInvasa
           {type==='pir'?  <GoAlert color="#ff9853"/> : <CgDanger color="#D14E4E"/>}
           <div className="text">
             <h1> {type==='pir'? 'Alerta de ocorrência!' : 'Alerta de invasão!'}</h1>
-            <h2><b>Local: </b>{local}</h2>
+            <h2><b>Local: </b>{infos.local}</h2>
           </div>
         </div>
         
         <div className="right-comp">
           <h2>13:54 - <b>10 de Novembro de 2021</b></h2>
           {type==='ultra' && 
-          <button onClick={playExpandingAnimation}> {detailsActive? 'Fechar Detalhes' : 'Abrir Detalhes'} </button>
+          <div className="b-detalhes">
+            <button onClick={playExpandingAnimation}> {detailsActive? 'Fechar Detalhes' : 'Abrir Detalhes'} </button>
+          </div>
+          
         }  
         </div>
       </div>
@@ -76,18 +89,22 @@ export function NotificacaoInvasao({local, onOpenModal, type}: NotificacaoInvasa
         <h2>Detalhes da ocorrência</h2>
         <div>
           <p>
-            Possível invasor localizado em: <strong>{local}</strong> a '30m' de distancia.
+            Possível invasor localizado em: <strong>{infos.local}</strong> a {infos.distancia??0}m de distancia.
            
           </p>
-          <p>Altura do invasor:  <strong>tantos metros de altura</strong> </p>
-           <p> Nível de invasão:  <strong>90% de chances de ser um perigo</strong> </p>
+          <p>Altura do invasor:  <strong>{infos.altura??0} metros de altura</strong> </p>
+           <p> Nível de invasão:  <strong>{infos.perigo??0}% de chances de ser um perigo</strong> </p>
             <p>Aconselhamos que tome medidas cabíveis para tal situação.</p>
         </div>
         <div className="relatar-ocorrencia">
           <button onClick={onOpenModal}>RELATAR OCORRÊNCIA</button>
         </div>
       </Details>
-
+      {
+        qtd > 1 && (
+          <CircleNotifications qtd={qtd} onClick={onOpenModal} />
+        )
+      }
     </Container>
   )
 } 

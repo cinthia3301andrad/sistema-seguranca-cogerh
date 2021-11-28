@@ -5,7 +5,7 @@ import { CgDanger } from "react-icons/cg";
 import { Container } from './styles'
 
 interface ComponentStatusProps {
-  status: 'alert'  | 'safe' | 'perigo'
+  status: string
 }
 
 export function ComponentStatus({ status}: ComponentStatusProps){

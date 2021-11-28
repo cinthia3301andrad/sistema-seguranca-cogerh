@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
       }  
     }
     body {
-      background: linear-gradient(177deg, rgba(238,247,255,1) 0%, rgba(206,235,250,1) 100%); 
+      background: rgba(206,235,250,1); 
         -webkit-font-smoothing: antialiased;
     }
     body, input, textarea, button {
@@ -70,6 +70,9 @@ export const GlobalStyle = createGlobalStyle`
       left: 0;
     }
     .react-modal-content {
+      height: 90%;
+      max-height: 600px;
+      overflow-y: auto;
       width:90% ;
       max-width: 725px;
    
@@ -100,4 +103,5 @@ export const GlobalStyle = createGlobalStyle`
         filter: brightness(0.7);
       }
   }
+ 
 `;

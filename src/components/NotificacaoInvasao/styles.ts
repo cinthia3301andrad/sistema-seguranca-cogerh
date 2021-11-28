@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Details = styled(motion.div)`
+ 
   display:'flex';
   flex-direction: column;
   padding: 1.5rem 3rem;
@@ -51,15 +52,16 @@ export const Details = styled(motion.div)`
 `
 
 export const Container = styled.div`
+ position: relative;  
  display: flex;
  flex-direction: column;
  width: 100%;
- max-width: 700px;
+ max-width: 666px;
 
 
   .content {  
     background: var(--dark);
-    padding: 1.5rem;
+    padding: 1.5rem 2.2rem;
     border-radius: 12px;
     width: 100%;
    
@@ -79,6 +81,7 @@ export const Container = styled.div`
     h2 {
       font-size: 14px;
       color: white;
+      margin: 0;
       b {
         color: var(--blue-200);
       }
@@ -134,8 +137,10 @@ export const Container = styled.div`
     .right-comp {
       align-items: start;
       padding-left: 58px ;
-      button {
-        margin-left: 60% ;
+      .b-detalhes {
+        display: flex;
+        width: 100%;
+        justify-content: end;
       }
     }
     
@@ -145,6 +150,6 @@ export const Container = styled.div`
       }
      
     }
-    }
+  }
 `; 
 
