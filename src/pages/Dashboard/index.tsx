@@ -24,7 +24,25 @@ export function Dashboard(){
     const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
     const [notificacoes, setNotificacoes] = useState<Notificacao[]>([
-/*         {
+       
+        {
+            infos: {
+                local:  "Canal 2",
+                data: new Date(),
+                distancia: 10,
+                altura: 172,
+                perigo: 78
+            },
+            status: "ultra",
+        }, 
+        {
+            infos: {
+                local:  "Portão Principal",
+                data: new Date(),
+            },
+            status: "pir",
+        },
+        {
             infos: {
                 local: "Atrás da Casa",
                 data: new Date(),
@@ -48,24 +66,18 @@ export function Dashboard(){
             },
             status: "pir",
         },
-        {
-            infos: {
-                local:  "Canal 2",
-                data: new Date(),
-                distancia: 10,
-                altura: 172,
-                perigo: 78
-            },
-            status: "ultra",
-        }, */
+    
     ]);
 
-/*     function shuffleArray(array: any) {
+     function shuffleArray(array: any) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-        setNotificacoes(array);
+        const newArray = [...array]
+        console.log("ue", array, notifyAtual)
+      
+        setNotificacoes(newArray);
     }
 
     useEffect(()=> {
@@ -76,9 +88,9 @@ export function Dashboard(){
         }, 5000);
 
 
-    }, [isAlterar]) ; */
+    }, [isAlterar]) ; 
     
-    useEffect(()=> {
+/*     useEffect(()=> {
         setTimeout(() => {
             setNotificacoes([...notificacoes, 
                 {
@@ -94,9 +106,10 @@ export function Dashboard(){
             ])
         }, 5000);
 
-    }, [notificacoes]) ;
+    }, [notificacoes]) ; */
 
     useEffect(() => {
+        console.log("entrou", notificacoes);
         if(notificacoes.length > 0) {
             let index = notificacoes.findIndex(notificacao => notificacao.status === "ultra")
             if(index < 0) {
@@ -125,20 +138,12 @@ export function Dashboard(){
                     <ul className="header">
                         {
                             notifyAtual && 
-                            <motion.li
-                            initial={{ opacity: 0, translateY: -100 }}
-                            animate={{ opacity: 1, translateY: 0 }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 150,
-                                damping: 100
-                            }}
-                            className="alert">
+                            
                                 <NotificacaoInvasao qtd={notificacoes.length - 1}
                                                     infos={notifyAtual.infos} 
                                                     onOpenModal={handleOpenModal} 
                                                     type={notifyAtual.status}/>
-                        </motion.li>
+                   
                         }
                        
                     </ul>

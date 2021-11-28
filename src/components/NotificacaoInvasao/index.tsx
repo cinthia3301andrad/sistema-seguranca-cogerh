@@ -7,6 +7,7 @@ import audio from '../../assets/alert.mp3';
 import {CircleNotifications} from '../CircleNotifications'
 
 import { Container,Details} from "./styles";
+import { motion } from 'framer-motion';
 
 interface NotificacaoInvasaoProps {
   qtd: number;
@@ -52,6 +53,15 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
     }, expandingTransition.duration * 100 - 150);
   };
   return (
+    <motion.li
+      initial={{ opacity: 0, translateY: -100 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{
+      type: "spring",
+      stiffness: 150,
+      damping: 100
+              }}
+     className={type}>
     <Container>
       <audio
         ref={audioRef}
@@ -109,5 +119,6 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
         )
       }
     </Container>
+    </motion.li>
   )
 } 
