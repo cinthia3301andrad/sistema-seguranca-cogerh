@@ -60,7 +60,7 @@ export function ComponentSquareRelatorio(){
       dataIndex: 'status',
       key: 'status',
       render: (text:any) => <a style={{color: 
-        text==='Seguro' ? 'red' : 'green' 
+        text==='Seguro' ? 'green' : 'red' 
       }}>{text}</a>,
     },
     {

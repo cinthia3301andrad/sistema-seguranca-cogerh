@@ -52,16 +52,19 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
     setTimeout(() => {
     }, expandingTransition.duration * 100 - 150);
   };
+
+ 
+
   return (
     <motion.li
       key={infos.local}
-      initial={{ opacity: 0, translateY: -100 }}
-      animate={{ opacity: 1, translateY: 0 }}
+      initial={{ opacity: 0, y: 10, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{
-      type: "spring",
-      stiffness: 150,
-      damping: 100
-              }}
+        duration: 0.2,
+        repeat: 3,
+      }}
      className={type}>
     <Container>
       <audio
