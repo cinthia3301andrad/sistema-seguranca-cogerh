@@ -10,6 +10,8 @@ export const Details = styled(motion.div)`
   width: 100%;
   background: rgba(200, 200, 233, 0.2);
 
+
+
   h2 {
     font-family: 'Poppins';
     color: #4D4F6C;
@@ -38,7 +40,7 @@ export const Details = styled(motion.div)`
     background: rgba(182, 233, 254, 0.4);
     color: rgba(15, 84, 129, 0.99);
     font-family: 'Roboto Condensed', sans-serif;
-    width: 25%;
+
     font-weight: 700;
     padding: 0.4rem;
     &:hover {
@@ -53,7 +55,7 @@ export const Container = styled.div`
  flex-direction: column;
  width: 100%;
  max-width: 700px;
- 
+
 
   .content {  
     background: var(--dark);
@@ -122,5 +124,27 @@ export const Container = styled.div`
       margin-right: 1.2rem;
     }
   }
+
+  @media (max-width: 630px){
+    .content {  
+      flex-direction: column;
+      height: auto;
+    }
+
+    .right-comp {
+      align-items: start;
+      padding-left: 58px ;
+      button {
+        margin-left: 60% ;
+      }
+    }
+    
+    .text {
+      h1, h2 {
+        margin: 0;
+      }
+     
+    }
+    }
 `; 
 

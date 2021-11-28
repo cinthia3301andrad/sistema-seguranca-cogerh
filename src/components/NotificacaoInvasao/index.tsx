@@ -1,10 +1,14 @@
 import { Container,Details} from "./styles";
 import { GoAlert } from "react-icons/go";
-import {useState} from 'react'
+import { CgDanger } from "react-icons/cg";
+import audio from '../../assets/alert.mp3';
+import {useRef, useState} from 'react';
+
 
 interface NotificacaoInvasaoProps {
   local: string;
   onOpenModal: () => void;
+  type: 'pir' | 'ultra';
 }
 
 const expandingTransition = {
@@ -26,9 +30,11 @@ const backdropVariants = {
 };
 
 
-export function NotificacaoInvasao({local, onOpenModal}: NotificacaoInvasaoProps){
-
+export function NotificacaoInvasao({local, onOpenModal, type}: NotificacaoInvasaoProps){
+  const audioRef = useRef<HTMLAudioElement>(null);
+  
   const [detailsActive, setDetailsActive] = useState(false)
+  
   
   const playExpandingAnimation = () => {
     setDetailsActive(!detailsActive);
@@ -37,20 +43,29 @@ export function NotificacaoInvasao({local, onOpenModal}: NotificacaoInvasaoProps
   };
   return (
     <Container>
+      <audio
+        ref={audioRef}
+        src={audio}
+                                    
+        autoPlay
+        />
       <div className="content">
         <div className="left-comp">
-          <GoAlert color="#ff9853"/>
+          {type==='pir'?  <GoAlert color="#ff9853"/> : <CgDanger color="#D14E4E"/>}
           <div className="text">
-            <h1>Alerta de Ocorrência!</h1>
+            <h1> {type==='pir'? 'Alerta de ocorrência!' : 'Alerta de invasão!'}</h1>
             <h2><b>Local: </b>{local}</h2>
           </div>
         </div>
-
+        
         <div className="right-comp">
           <h2>13:54 - <b>10 de Novembro de 2021</b></h2>
-          <button onClick={playExpandingAnimation}>Abrir Detalhes</button>
+          {type==='ultra' && 
+          <button onClick={playExpandingAnimation}> {detailsActive? 'Fechar Detalhes' : 'Abrir Detalhes'} </button>
+        }  
         </div>
       </div>
+    
       <Details
        initial={false}
        animate={detailsActive ? "expanded" : "collapsed"}
