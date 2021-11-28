@@ -20,7 +20,7 @@ type Notificacao = {
 
 export function Dashboard(){
 
-    const [isAlterar, setIsAlterar] = useState(false)
+    const [isChange, setIsChange] = useState(false)
     const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
     const [notificacoes, setNotificacoes] = useState<Notificacao[]>([
@@ -69,6 +69,14 @@ export function Dashboard(){
     
     ]);
 
+    function testando(){
+       if(notifyAtual){
+        return  <NotificacaoInvasao qtd={notificacoes.length - 1}
+        infos={notifyAtual.infos} 
+        onOpenModal={handleOpenModal} 
+        type={notifyAtual.status}/>
+       }
+    }
      function shuffleArray(array: any) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -84,11 +92,11 @@ export function Dashboard(){
         setTimeout(() => {
 
             shuffleArray(notificacoes)
-            setIsAlterar(!isAlterar)
+            setIsChange(!isChange)
         }, 5000);
 
 
-    }, [isAlterar]) ; 
+    }, [isChange]) ; 
     
 /*     useEffect(()=> {
         setTimeout(() => {
@@ -111,12 +119,18 @@ export function Dashboard(){
     useEffect(() => {
         console.log("entrou", notificacoes);
         if(notificacoes.length > 0) {
-            let index = notificacoes.findIndex(notificacao => notificacao.status === "ultra")
-            if(index < 0) {
+          
+           /*  let index = notificacoes.findIndex(notificacao => notificacao.status === "ultra") */
+     /*        if(index < 0) {
                 index = notificacoes.length - 1
                 setStatusAtual('alert')
-            } else setStatusAtual('perigo')
-            setNotifyAtual(notificacoes[index])
+            } else setStatusAtual('perigo') */
+            const newNotification = notificacoes[notificacoes.length -1];
+            if(newNotification.status==='pir') setStatusAtual('alert')
+            else if(newNotification.status==='ultra')setStatusAtual('perigo')
+            else setStatusAtual('safe')
+            console.log("uhh", notificacoes,newNotification)
+            setNotifyAtual(newNotification)
         }
     }, [notificacoes])
 
@@ -136,15 +150,15 @@ export function Dashboard(){
             <Main>
                 <div className="colunas"> 
                     <ul className="header">
-                        {
-                            notifyAtual && 
-                            
-                                <NotificacaoInvasao qtd={notificacoes.length - 1}
-                                                    infos={notifyAtual.infos} 
-                                                    onOpenModal={handleOpenModal} 
-                                                    type={notifyAtual.status}/>
-                   
-                        }
+                    { notificacoes.map((notificacao, index) => {
+                        if (index > 3){
+                            return (<NotificacaoInvasao qtd={notificacoes.length - 1}
+                                infos={notificacao.infos} 
+                                onOpenModal={handleOpenModal} 
+                                type={notificacao.status}/>)
+                        }return<></>;
+                      
+                    })}
                        
                     </ul>
                     <div className="row">
