@@ -56,7 +56,7 @@ export const Container = styled.div`
  display: flex;
  flex-direction: column;
  width: 100%;
- max-width: 666px;
+ max-width: 670px;
 
 
   .content {  
@@ -64,8 +64,6 @@ export const Container = styled.div`
     padding: 1.5rem 2.2rem;
     border-radius: 12px;
     width: 100%;
-   
-    height: 90px;
 
     display: flex;
     justify-content: space-between;
@@ -110,12 +108,13 @@ export const Container = styled.div`
     h1 {
       color: white;
       font-size: 20px;
-      padding-bottom: .2rem;
+      margin: 0
     }
     
     h2 {
       font-size: 14px;
       color: white;
+      margin: 0;
       b {
         color: var(--blue-200);
       }

@@ -42,9 +42,9 @@ const backdropVariants = {
 
 export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoInvasaoProps){
   const audioRef = useRef<HTMLAudioElement>(null);
-  
+  const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 
+                 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   const [detailsActive, setDetailsActive] = useState(false)
-  
   
   const playExpandingAnimation = () => {
     setDetailsActive(!detailsActive);
@@ -69,7 +69,10 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
         </div>
         
         <div className="right-comp">
-          <h2>13:54 - <b>10 de Novembro de 2021</b></h2>
+          <h2>
+            {infos.data.getHours()}:{infos.data.getMinutes()} - 
+            <b> {infos.data.getDate()} de {meses[infos.data.getMonth()]} de {infos.data.getFullYear()}</b>
+          </h2>
           {type==='ultra' && 
           <div className="b-detalhes">
             <button onClick={playExpandingAnimation}> {detailsActive? 'Fechar Detalhes' : 'Abrir Detalhes'} </button>

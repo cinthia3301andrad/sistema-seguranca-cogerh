@@ -49,16 +49,12 @@ export const Main = styled.div`
     flex-direction: column;
     flex: 1;
   }
-  .coluna-1 { 
-    max-width: 250px;
-  }
   .coluna-2 { 
     max-width: 400px;
     flex: 2;
   }
   .coluna-3 { 
     min-width: 315px;
-    
   }
   @media (max-width: 600px){
     .coluna-1, .coluna-2, .coluna-3 { 

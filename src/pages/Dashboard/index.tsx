@@ -24,7 +24,7 @@ export function Dashboard(){
     const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
     const [notificacoes, setNotificacoes] = useState<Notificacao[]>([
-        {
+/*         {
             infos: {
                 local: "Atrás da Casa",
                 data: new Date(),
@@ -57,7 +57,7 @@ export function Dashboard(){
                 perigo: 78
             },
             status: "ultra",
-        },
+        }, */
     ]);
 
 /*     function shuffleArray(array: any) {
@@ -77,16 +77,34 @@ export function Dashboard(){
 
 
     }, [isAlterar]) ; */
+    
+    useEffect(()=> {
+        setTimeout(() => {
+            setNotificacoes([...notificacoes, 
+                {
+                    infos: {
+                        local:  "Canal 2",
+                        data: new Date(),
+                        distancia: 10,
+                        altura: 172,
+                        perigo: 78
+                    },
+                    status: "ultra",
+                },
+            ])
+        }, 5000);
+
+    }, [notificacoes]) ;
 
     useEffect(() => {
-        let index = notificacoes.findIndex(notificacao => notificacao.status === "ultra")
-        if(index < 0) {
-            index = notificacoes.length - 1
-            setStatusAtual('alert')
-        } else setStatusAtual('perigo')
-        
-        setNotifyAtual(notificacoes[index])
-
+        if(notificacoes.length > 0) {
+            let index = notificacoes.findIndex(notificacao => notificacao.status === "ultra")
+            if(index < 0) {
+                index = notificacoes.length - 1
+                setStatusAtual('alert')
+            } else setStatusAtual('perigo')
+            setNotifyAtual(notificacoes[index])
+        }
     }, [notificacoes])
 
   
