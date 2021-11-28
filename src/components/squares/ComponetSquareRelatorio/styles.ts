@@ -26,6 +26,7 @@ export const ContainerSquareRelatorio = styled.div`
     position:relative;
     
     h1 {
+      font-size: 1.2rem;
       text-align: center;
     }
    button {

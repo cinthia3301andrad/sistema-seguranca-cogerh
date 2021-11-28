@@ -25,7 +25,11 @@ export function Header({activeScreen}: HeaderProps){
               Relatório
             </Link>
           </ButtonNav>
-        
+          <ButtonNav  active={activeScreen ==="ocorrencias"? true : false}>
+            <Link to="/ocorrencias">
+              Todas as ocorrências
+            </Link>
+          </ButtonNav>
       
         </NavBar>
         <div className="calendar">

@@ -39,6 +39,11 @@ export function MenuSanduiche({activeScreen}: PropsMenu){
                             RELATÓRIO
                             </Link>
                         </ButtonNav>
+                        <ButtonNav active={activeScreen ==="ocorrencias"? true : false}>
+                            <Link to="/ocorrencias">
+                            TODAS AS OCORRÊNCIAS
+                            </Link>
+                        </ButtonNav>
                     </ul>
                         <div className="calendar-mn">
                             <p>

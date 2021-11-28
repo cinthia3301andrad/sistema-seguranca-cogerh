@@ -16,58 +16,16 @@ type Notificacao = {
     }, 
     status: string
 }
+type PropsDashboard = {
+    ocorrencias: Notificacao[];
+}
 
-
-export function Dashboard(){
+export function Dashboard({ocorrencias}: PropsDashboard){
 
     const [isChange, setIsChange] = useState(false)
     const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
-    const [notificacoes, setNotificacoes] = useState<Notificacao[]>([
-       
-        {
-            infos: {
-                local:  "Canal 2",
-                data: new Date(),
-                distancia: 10,
-                altura: 172,
-                perigo: 78
-            },
-            status: "ultra",
-        }, 
-        {
-            infos: {
-                local:  "Portão Principal",
-                data: new Date(),
-            },
-            status: "pir",
-        },
-        {
-            infos: {
-                local: "Atrás da Casa",
-                data: new Date(),
-                distancia: 30,
-                altura: 160,
-                perigo: 83
-            },
-            status: "ultra",
-        },
-        {
-            infos: {
-                local:  "Portão Principal",
-                data: new Date(),
-            },
-            status: "pir",
-        },
-        {
-            infos: {
-                local:  "Canal Principal",
-                data: new Date(),
-            },
-            status: "pir",
-        },
-    
-    ]);
+    const [notificacoes, setNotificacoes] = useState<Notificacao[]>(ocorrencias);
 
     function testando(){
        if(notifyAtual){
