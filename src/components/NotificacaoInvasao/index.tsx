@@ -54,6 +54,7 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
   };
   return (
     <motion.li
+      key={infos.local}
       initial={{ opacity: 0, translateY: -100 }}
       animate={{ opacity: 1, translateY: 0 }}
       transition={{
