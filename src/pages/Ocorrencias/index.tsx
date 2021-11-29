@@ -19,7 +19,7 @@ export function Ocorrencias(){
         <Container>
           <Header activeScreen='ocorrencias'/>
             <Content>
-                <h1>Ocorrencias não relatadas</h1> 
+                <h1>Todas as ocorrências - {ocorrenciasData.length}</h1> 
 
                 <ListOcorrencias>
                     {
