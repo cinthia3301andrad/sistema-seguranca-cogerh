@@ -71,7 +71,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     .react-modal-content {
       height: 90%;
-      max-height: 600px;
+      max-height: 700px;
       overflow-y: auto;
       width:90% ;
       max-width: 725px;

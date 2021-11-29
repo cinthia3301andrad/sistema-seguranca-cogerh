@@ -54,7 +54,7 @@ export function Dashboard(){
       },
       {
           infos: {
-              local:  "Portão Principal",
+              local:  "Via 2 do canal",
               data: new Date(),
           },
           status: "pir",
@@ -72,23 +72,14 @@ export function Dashboard(){
     const [statusAtual, setStatusAtual] = useState('safe');
     const [notificacoes, ] = useState<Notificacao[]>(ocorrencias);
 
-     function shuffleArray(array: any) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        const newArray = [...array]
- 
-      
-        setOcorrenciasData(newArray);
-    }
-
    
 
     useEffect(() =>{
       
         setTimeout(() => {
-            setOcorrenciasData([ocorrencias[0]]);
+            const id = (new Date().getTime() / 1000) * Math.random();
+            const newOcorrencia = {...ocorrencias[0], id}
+            setOcorrenciasData([newOcorrencia]);
         },10000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -106,12 +97,14 @@ export function Dashboard(){
         
             setNotifyAtual(newNotification);
         }
-
+        const id = (new Date().getTime() / 1000) * Math.random();
         const index = Math.floor(Math.random() * (ocorrencias.length - 1));
+        console.log("aaa", ocorrenciasData)
         if(ocorrenciasData.length >= 1) { 
+            const newOcorrencia = {...ocorrencias[index], id}
             
             setTimeout(() => {
-                setOcorrenciasData((prev: any) => [...prev, ocorrencias[index]])
+                setOcorrenciasData((prev: any) => [...prev, newOcorrencia])
             }, 10000);
             
         }

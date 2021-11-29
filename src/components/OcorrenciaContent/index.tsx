@@ -1,11 +1,13 @@
 import { ModalOcorrencia } from '../ModalOcorrencia';
+import ReactTooltip from 'react-tooltip';
 
 import { IoMdClose } from "react-icons/io";
 import { CgDanger } from "react-icons/cg";
 import {BsChevronDown} from 'react-icons/bs'
 import { Details, ListLi} from "./styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { GoAlert } from 'react-icons/go';
+import { OcorrenciasContext } from '../../context/ocorrenciasContext';
 
 type OcorrenciaContentProps = {
     ocorrencia: any;
@@ -30,12 +32,33 @@ const expandingTransition = {
   };
 
 export function OcorrenciaContent({ocorrencia}: OcorrenciaContentProps){
+
+    const {ocorrenciasData,setOcorrenciasData} = useContext(OcorrenciasContext);
+
     const [detailsActive, setDetailsActive] = useState(false);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     function handleCloseModal(){
         setIsModalOpen(false);
+    }
+
+    function handleButton (){
+      if(ocorrencia.status ==='ultra'){
+        playExpandingAnimation()
+      }else {
+        handleRemoveOcorrencia();
+      }
+    }
+
+    function handleRemoveOcorrencia() {
+      const newOcorrencias = ocorrenciasData.filter((ocorrenciaData: any) => {
+        if(ocorrenciaData.id !== ocorrencia.id) return ocorrenciaData;
+        return;
+      });
+
+      console.log("hmmm", newOcorrencias)
+      setOcorrenciasData(newOcorrencias)
     }
 
     const playExpandingAnimation = () => {
@@ -53,12 +76,14 @@ export function OcorrenciaContent({ocorrencia}: OcorrenciaContentProps){
                                         
                     <p>13:24 - 22/04/2021</p>
                     </header>
-                        <button onClick={playExpandingAnimation}>
+                      
+                        <button onClick={ handleButton } data-tip={ocorrencia.status ==='pir' ? 'Remover aviso' : 'Expandir'}>
                           {
                                ocorrencia.status === "ultra" ?
                                <BsChevronDown/> : <IoMdClose/>
                           } 
                         </button>
+                        <ReactTooltip place="top" type="info" effect="solid"/>
             </div>
             {
                 ocorrencia.status === "ultra" && 
