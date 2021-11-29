@@ -80,12 +80,11 @@ export function Dashboard(){
             const id = (new Date().getTime() / 1000) * Math.random();
             const newOcorrencia = {...ocorrencias[0], id}
             setOcorrenciasData([newOcorrencia]);
-        },10000);
+        }, 25000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
  
-
     useEffect(() => {
     
         if(ocorrenciasData.length > 0) {
@@ -105,7 +104,7 @@ export function Dashboard(){
             
             setTimeout(() => {
                 setOcorrenciasData((prev: any) => [...prev, newOcorrencia])
-            }, 10000);
+            }, 25000);
             
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
