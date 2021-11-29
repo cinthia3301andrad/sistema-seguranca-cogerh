@@ -9,6 +9,7 @@ import {CircleNotifications} from '../CircleNotifications'
 import { Container,Details} from "./styles";
 import { motion } from 'framer-motion';
 import { ModalOcorrencia } from '../ModalOcorrencia';
+import { meses } from '../../utils/datas';
 
 interface NotificacaoInvasaoProps {
   id: number;
@@ -44,8 +45,7 @@ const backdropVariants = {
 
 export function NotificacaoInvasao({infos, type, qtd, id}: NotificacaoInvasaoProps){
   const audioRef = useRef<HTMLAudioElement>(null);
-  const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 
-                 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+
   const [detailsActive, setDetailsActive] = useState(false)
   
   const playExpandingAnimation = () => {

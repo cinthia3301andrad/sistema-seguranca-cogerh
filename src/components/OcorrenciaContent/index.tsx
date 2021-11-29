@@ -8,6 +8,7 @@ import { Details, ListLi} from "./styles";
 import { useContext, useState } from "react";
 import { GoAlert } from 'react-icons/go';
 import { OcorrenciasContext } from '../../context/ocorrenciasContext';
+import { meses } from '../../utils/datas';
 
 type OcorrenciaContentProps = {
     ocorrencia: any;
@@ -73,7 +74,7 @@ export function OcorrenciaContent({ocorrencia}: OcorrenciaContentProps){
                 {ocorrencia.status ==='pir'?  <GoAlert color="#ff9853"/> : <CgDanger color="#D14E4E"/>}
                     <h2>{ocorrencia.infos.local}</h2>  
                                         
-                    <p>13:24 - 22/04/2021</p>
+                    <p>{ocorrencia.infos.data.getHours()}:{ocorrencia.infos.data.getMinutes()} - {ocorrencia.infos.data.getDate()} de {meses[ocorrencia.infos.data.getMonth()]} de {ocorrencia.infos.data.getFullYear()}</p>
                     </header>
                       
                         <button onClick={ handleButton } data-tip={ocorrencia.status ==='pir' ? 'Remover aviso' : 'Expandir'}>

@@ -8,47 +8,67 @@ export function ComponentSquareRelatorio(){
   const data = [
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
-      status: "Seguro",
-      local: "Canal X",
+      status: "Alerta perigo",
+      local: "Via 2 do canal",
       dataHora: "10/11/2021 - 13:14",
       confirmadoPor: "Rodrigo Alves"
    },
    {
     descricao: "Invasão de pessoa para fins não legais",
     status: "Alerta perigo",
-    local: "Canal X",
+    local: "Porteira dos canais",
     dataHora: "10/11/2021 - 13:14",
     confirmadoPor: "Rodrigo Alves"
- },
- {
-  descricao: "Descrição tal a respeito da ocorrência",
-  status: "Alerta perigo",
-  local: "Canal X",
-  dataHora: "10/11/2021 - 13:14",
-  confirmadoPor: "Senhor chico do pote"
-},
-{
-  descricao: "Pessoa entrou para fazer um reparo nas maquinas",
-  status: "Seguro",
-  local: "Canal X",
-  dataHora: "10/11/2021 - 13:14",
-  confirmadoPor: "Rodrigo Alves"
-},
-{
-  descricao: "Pessoa entrou para fazer um reparo nas maquinas",
-  status: "Seguro",
-  local: "Canal X",
-  dataHora: "10/11/2021 - 13:14",
-  confirmadoPor: "Rodrigo Alves"
-},
-{
-  descricao: "Pessoa entrou para fazer um reparo nas maquinas",
-  status: "Seguro",
-  local: "Canal X",
-  dataHora: "10/11/2021 - 13:14",
-  confirmadoPor: "Rodrigo Alves"
-},
-
+    },
+    {
+      descricao: "Descrição tal a respeito da ocorrência",
+      status: "Alerta perigo",
+      local: "Canal X",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Renato"
+    },
+    {
+      descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+      status: "Alerta perigo",
+      local: "Porteira dos canais",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Rodrigo Alves"
+    },
+    {
+      descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+      status: "Seguro",
+      local: "Casa de motor dos canais",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Chico Xavier"
+    },
+    {
+      descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+      status: "Alerta perigo",
+      local: "Canal X",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Rodrigo Alves"
+    },
+    {
+      descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+      status: "Seguro",
+      local: "Porteira dos canais",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Rodrigo Alves"
+    },
+    {
+      descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+      status: "Alerta perigo",
+      local: "Casa de motor dos canais",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Chico Xavier"
+    },
+    {
+      descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+      status: "Seguro",
+      local: "Entrada principal",
+      dataHora: "10/11/2021 - 13:14",
+      confirmadoPor: "Rodrigo Alves"
+    },
   ]
   const columns = [
     {
@@ -124,9 +144,10 @@ export function ComponentSquareRelatorio(){
         </section>
 
         <Table 
+        
           columns={columns}
           dataSource={data}
-          pagination={{ position: ['bottomCenter'] }}
+          pagination={{ position: ['bottomCenter'], pageSize: 8}}
             
         />
     

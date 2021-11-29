@@ -36,6 +36,16 @@ export function Dashboard(){
           status: "ultra",
       }, 
       {
+        infos: {
+            local: "Casa de motor dos canais",
+            data: new Date(),
+            distancia: 30,
+            altura: 1.60,
+            perigo: 83
+        },
+        status: "ultra",
+    },
+      {
           infos: {
               local:  "Portão Principal",
               data: new Date(),
@@ -52,6 +62,17 @@ export function Dashboard(){
           },
           status: "ultra",
       },
+
+      {
+        infos: {
+            local: "Porteira dos canais",
+            data: new Date(),
+            distancia: 30,
+            altura: 1.60,
+            perigo: 83
+        },
+        status: "ultra",
+    },
       {
           infos: {
               local:  "Via 2 do canal",
@@ -67,10 +88,10 @@ export function Dashboard(){
           status: "pir",
       },
     ];
-    const [isChange, setIsChange] = useState(false)
-    const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
+
+    const [, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
-    const [notificacoes, ] = useState<Notificacao[]>(ocorrencias);
+    const [, ] = useState<Notificacao[]>(ocorrencias);
 
    
 
