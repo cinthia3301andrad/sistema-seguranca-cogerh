@@ -1,15 +1,52 @@
 
+import { useContext } from "react";
 import Modal from "react-modal";
-import iconClose from "../../assets/close.svg";
-import { Container,ContentForm } from './styles'
 
+import { ToastContainer, toast } from 'react-toastify';
+
+import iconClose from "../../assets/close.svg";
+import { OcorrenciasContext } from "../../context/ocorrenciasContext";
+import { Container,ContentForm } from './styles'
+toast.configure();
 interface ModalProps {
+    id: number;
     isOpen: boolean;
     onRequestClose: () => void;
     ocorrencia: string;
   }
 
-export function ModalOcorrencia({isOpen, onRequestClose, ocorrencia }: ModalProps){
+export function ModalOcorrencia({isOpen, onRequestClose, ocorrencia, id}: ModalProps){
+  
+    const {ocorrenciasData,setOcorrenciasData} = useContext(OcorrenciasContext);
+
+    
+    const  notify = () => toast.success('Ocorrência relatada com sucesso!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+
+    function handleRemoveOcorrencia() {
+            const newOcorrencias = ocorrenciasData.filter((ocorrenciaData: any) => {
+              if(ocorrenciaData.id !== id) return ocorrenciaData;
+              return;
+            });
+      
+            setOcorrenciasData(newOcorrencias)
+        }
+    function handleOcorrenciaRelatada(event: any){
+        event.preventDefault();
+        handleRemoveOcorrencia();
+      
+        onRequestClose();
+        notify();
+
+    }
+  
     return (
         <Modal
             isOpen={isOpen}
@@ -32,12 +69,12 @@ export function ModalOcorrencia({isOpen, onRequestClose, ocorrencia }: ModalProp
                     <p><strong>13:45 -  {new Date().toLocaleDateString('pt-br')}</strong></p>
                 </div>
             </header>
-            <ContentForm>
+            <ContentForm onSubmit={(event) =>  handleOcorrenciaRelatada(event)}>
 
                 <div className="column">
                     <div>
                         <label>Nome do vigilante: *</label>
-                        <input type="text" />
+                        <input type="text" required/>
                     </div>
                     <div>
                         <label> Como você classifica essa ocorrência? *</label>
@@ -50,10 +87,10 @@ export function ModalOcorrencia({isOpen, onRequestClose, ocorrencia }: ModalProp
                 </div>
                 <div className="textarea">
                     <label >Descrição da ocorrência: *</label>
-                    <textarea />
+                    <textarea required/>
                 </div>
 
-                <button className="enviar">Enviar</button>
+                <button type="submit" className="enviar">Enviar</button>
 
             </ContentForm>
   

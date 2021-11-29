@@ -5,6 +5,8 @@ import { Dashboard } from './pages/Dashboard';
 import { Ocorrencias } from './pages/Ocorrencias';
 import { Relatorio } from './pages/Relatorio';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 import { GlobalStyle } from "./styles/global";
 
 function App() {

@@ -7,7 +7,7 @@ export function ComponentSquarePercent(){
     height: 200,
     width: 200,
     autoFit: false,
-    percent: 0.2,
+    percent: 1,
     color: ['#0F5481', '#E8EDF3'],
   };
 

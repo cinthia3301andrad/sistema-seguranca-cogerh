@@ -123,10 +123,13 @@ export function Dashboard(){
                     <ul className="header">
                     {ocorrenciasData.length > 0 &&  (
                         <NotificacaoInvasao 
+
                                 key={ocorrenciasData[ocorrenciasData.length - 1]}
                                 qtd={ocorrenciasData.length - 1}
                                 infos={ocorrenciasData[ocorrenciasData.length - 1].infos} 
-                                type={ocorrenciasData[ocorrenciasData.length - 1].status}/>
+                                type={ocorrenciasData[ocorrenciasData.length - 1].status}
+                                id={ocorrenciasData[ocorrenciasData.length - 1].id}
+                                />
                     )}
                        
                     </ul>

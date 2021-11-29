@@ -57,7 +57,6 @@ export function OcorrenciaContent({ocorrencia}: OcorrenciaContentProps){
         return;
       });
 
-      console.log("hmmm", newOcorrencias)
       setOcorrenciasData(newOcorrencias)
     }
 
@@ -110,7 +109,7 @@ export function OcorrenciaContent({ocorrencia}: OcorrenciaContentProps){
             }
 
             <ModalOcorrencia
-            
+                id={ocorrencia.id}
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}
                 ocorrencia={ocorrencia.infos.local}

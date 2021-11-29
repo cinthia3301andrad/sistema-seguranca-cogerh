@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { ModalOcorrencia } from '../ModalOcorrencia';
 
 interface NotificacaoInvasaoProps {
+  id: number;
   qtd: number;
   infos: {
     local: string,
@@ -41,7 +42,7 @@ const backdropVariants = {
 };
 
 
-export function NotificacaoInvasao({infos, type, qtd}: NotificacaoInvasaoProps){
+export function NotificacaoInvasao({infos, type, qtd, id}: NotificacaoInvasaoProps){
   const audioRef = useRef<HTMLAudioElement>(null);
   const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 
                  'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
@@ -134,6 +135,7 @@ export function NotificacaoInvasao({infos, type, qtd}: NotificacaoInvasaoProps){
     </Container>
 
     <ModalOcorrencia
+    id={id}
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}
                 ocorrencia={infos.local}
