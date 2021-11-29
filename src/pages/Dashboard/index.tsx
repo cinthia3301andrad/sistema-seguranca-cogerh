@@ -68,7 +68,7 @@ export function Dashboard(){
       },
     ];
     const [isChange, setIsChange] = useState(false)
-    const [, setNotifyAtual] = useState<Notificacao>();
+    const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
     const [notificacoes, ] = useState<Notificacao[]>(ocorrencias);
 
@@ -83,31 +83,20 @@ export function Dashboard(){
         setOcorrenciasData(newArray);
     }
 
-    useEffect(()=> {
-  
-        if(ocorrenciasData.length > 0) { 
-            setTimeout(() => {
-
-                shuffleArray(notificacoes)
-                setIsChange(!isChange)
-            }, 10000);
-            
-        }
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isChange]) ; 
+   
 
     useEffect(() =>{
       
         setTimeout(() => {
             setOcorrenciasData([ocorrencias[0]]);
-        }, 10000);
+        },10000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
+ 
 
     useEffect(() => {
- 
+    
         if(ocorrenciasData.length > 0) {
          
             const newNotification = ocorrenciasData[ocorrenciasData.length - 1];
@@ -115,8 +104,18 @@ export function Dashboard(){
             else if(newNotification.status==='ultra')setStatusAtual('perigo')
             else setStatusAtual('safe')
         
-            setNotifyAtual(newNotification)
+            setNotifyAtual(newNotification);
         }
+
+        const index = Math.floor(Math.random() * (ocorrencias.length - 1));
+        if(ocorrenciasData.length >= 1) { 
+            
+            setTimeout(() => {
+                setOcorrenciasData((prev: any) => [...prev, ocorrencias[index]])
+            }, 10000);
+            
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ocorrenciasData])
 
   

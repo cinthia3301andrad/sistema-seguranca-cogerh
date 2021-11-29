@@ -103,27 +103,29 @@ export function NotificacaoInvasao({infos, type, qtd}: NotificacaoInvasaoProps){
         </div>
       </div>
     
-      <Details
-       initial={false}
-       animate={detailsActive ? "expanded" : "collapsed"}
-       variants={backdropVariants}
-       transition={expandingTransition}
-      
-       >
-        <h2>Detalhes da ocorrência</h2>
-        <div>
-          <p>
-            Possível invasor localizado em: <strong>{infos.local}</strong> a {infos.distancia??0}m de distancia.
-           
-          </p>
-          <p>Altura do invasor:  <strong>{infos.altura??0} metros de altura</strong> </p>
-           <p> Nível de invasão:  <strong>{infos.perigo??0}% de chances de ser um perigo</strong> </p>
-            <p>Aconselhamos que tome medidas cabíveis para tal situação.</p>
-        </div>
-        <div className="relatar-ocorrencia">
-          <button onClick={handleOpenModal}>RELATAR OCORRÊNCIA</button>
-        </div>
-      </Details>
+      {type === 'ultra' && 
+            <Details
+            initial={false}
+            animate={detailsActive ? "expanded" : "collapsed"}
+            variants={backdropVariants}
+            transition={expandingTransition}
+          
+            >
+            <h2>Detalhes da ocorrência</h2>
+            <div>
+              <p>
+                Possível invasor localizado em: <strong>{infos.local}</strong> a {infos.distancia??0}m de distancia.
+                
+              </p>
+              <p>Altura do invasor:  <strong>{infos.altura??0} metros de altura</strong> </p>
+                <p> Nível de invasão:  <strong>{infos.perigo??0}% de chances de ser um perigo</strong> </p>
+                <p>Aconselhamos que tome medidas cabíveis para tal situação.</p>
+            </div>
+            <div className="relatar-ocorrencia">
+              <button onClick={handleOpenModal}>RELATAR OCORRÊNCIA</button>
+            </div>
+          </Details>
+     }
       {
         qtd > 1 && (
           <CircleNotifications qtd={qtd} />
