@@ -57,6 +57,7 @@ export const NavBar = styled.nav`
   a {
     color: #12252F;
     font-weight: 500;
+    text-transform: uppercase;
     &:hover {
       color: #254E63;
     }

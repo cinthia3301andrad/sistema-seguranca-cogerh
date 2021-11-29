@@ -4,6 +4,7 @@ import { ContainerSquareRelatorio } from "./styles";
 
 export function ComponentSquareRelatorio(){
 
+  
   const data = [
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
@@ -59,6 +60,7 @@ export function ComponentSquareRelatorio(){
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
       render: (text:any) => <a style={{color: 
         text==='Seguro' ? 'green' : 'red' 
       }}>{text}</a>,

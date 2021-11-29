@@ -6,6 +6,15 @@ export const Container = styled.div`
 
 `; 
 
+export const ListOcorrencias = styled.ul`
+  height: 100%;
+
+  width: 100%;
+
+
+
+`; 
+
 export const Content = styled.main`
     display: flex;
     flex-direction: column;
@@ -30,7 +39,9 @@ export const Content = styled.main`
     border-radius: 12px;
 
     h1 { 
+      margin-bottom: 3rem;
         font-size: 1.2rem;
     }
 
 `; 
+

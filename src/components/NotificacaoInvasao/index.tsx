@@ -8,6 +8,7 @@ import {CircleNotifications} from '../CircleNotifications'
 
 import { Container,Details} from "./styles";
 import { motion } from 'framer-motion';
+import { ModalOcorrencia } from '../ModalOcorrencia';
 
 interface NotificacaoInvasaoProps {
   qtd: number;
@@ -18,7 +19,6 @@ interface NotificacaoInvasaoProps {
     distancia?: number,
     perigo?: number
   };
-  onOpenModal: () => void;
   type: string;
 }
 
@@ -41,7 +41,7 @@ const backdropVariants = {
 };
 
 
-export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoInvasaoProps){
+export function NotificacaoInvasao({infos, type, qtd}: NotificacaoInvasaoProps){
   const audioRef = useRef<HTMLAudioElement>(null);
   const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 
                  'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
@@ -54,6 +54,13 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
   };
 
  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  function handleOpenModal() {
+      setIsModalOpen(true);
+    }
+  function handleCloseModal() {
+      setIsModalOpen(false);
+    }
 
   return (
     <motion.li
@@ -114,15 +121,21 @@ export function NotificacaoInvasao({infos, onOpenModal, type, qtd}: NotificacaoI
             <p>Aconselhamos que tome medidas cabíveis para tal situação.</p>
         </div>
         <div className="relatar-ocorrencia">
-          <button onClick={onOpenModal}>RELATAR OCORRÊNCIA</button>
+          <button onClick={handleOpenModal}>RELATAR OCORRÊNCIA</button>
         </div>
       </Details>
       {
         qtd > 1 && (
-          <CircleNotifications qtd={qtd} onClick={onOpenModal} />
+          <CircleNotifications qtd={qtd} />
         )
       }
     </Container>
+
+    <ModalOcorrencia
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseModal}
+                ocorrencia={infos.local}
+            />
     </motion.li>
   )
 } 

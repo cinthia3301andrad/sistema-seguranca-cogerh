@@ -2,9 +2,11 @@ import { Header } from '../../components/header'
 import { ComponentStatus, ComponentSquare, ComponentSquarePercent, ComponentSquareGraph } from '../../components/squares'
 import { Container, Main } from './styles'
 import { NotificacaoInvasao } from '../../components/NotificacaoInvasao'
-import { useState, useEffect } from 'react';
-import { ModalOcorrencia } from '../../components/ModalOcorrencia';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useContext } from 'react';
+import ReactModal from 'react-modal';
+import React from 'react';
+import { OcorrenciasContext } from '../../context/ocorrenciasContext';
+ReactModal.setAppElement('*');
 
 type Notificacao = {
     infos: { 
@@ -16,90 +18,109 @@ type Notificacao = {
     }, 
     status: string
 }
-type PropsDashboard = {
-    ocorrencias: Notificacao[];
-}
 
-export function Dashboard({ocorrencias}: PropsDashboard){
+export function Dashboard(){
 
+    const {ocorrenciasData, setOcorrenciasData} = useContext(OcorrenciasContext);
+
+
+    const ocorrencias = [
+        {
+          infos: {
+              local:  "Canal 2",
+              data: new Date(),
+              distancia: 10,
+              altura: 172,
+              perigo: 78
+          },
+          status: "ultra",
+      }, 
+      {
+          infos: {
+              local:  "Portão Principal",
+              data: new Date(),
+          },
+          status: "pir",
+      },
+      {
+          infos: {
+              local: "Atrás da Casa",
+              data: new Date(),
+              distancia: 30,
+              altura: 160,
+              perigo: 83
+          },
+          status: "ultra",
+      },
+      {
+          infos: {
+              local:  "Portão Principal",
+              data: new Date(),
+          },
+          status: "pir",
+      },
+      {
+          infos: {
+              local:  "Canal Principal",
+              data: new Date(),
+          },
+          status: "pir",
+      },
+    ];
     const [isChange, setIsChange] = useState(false)
-    const [notifyAtual, setNotifyAtual] = useState<Notificacao>();
+    const [, setNotifyAtual] = useState<Notificacao>();
     const [statusAtual, setStatusAtual] = useState('safe');
-    const [notificacoes, setNotificacoes] = useState<Notificacao[]>(ocorrencias);
+    const [notificacoes, ] = useState<Notificacao[]>(ocorrencias);
 
-    function testando(){
-       if(notifyAtual){
-        return  <NotificacaoInvasao qtd={notificacoes.length - 1}
-        infos={notifyAtual.infos} 
-        onOpenModal={handleOpenModal} 
-        type={notifyAtual.status}/>
-       }
-    }
      function shuffleArray(array: any) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
         const newArray = [...array]
-        console.log("ue", array, notifyAtual)
+ 
       
-        setNotificacoes(newArray);
+        setOcorrenciasData(newArray);
     }
 
     useEffect(()=> {
-        setTimeout(() => {
+  
+        if(ocorrenciasData.length > 0) { 
+            setTimeout(() => {
 
-            shuffleArray(notificacoes)
-            setIsChange(!isChange)
-        }, 5000);
-
-
-    }, [isChange]) ; 
+                shuffleArray(notificacoes)
+                setIsChange(!isChange)
+            }, 10000);
+            
+        }
     
-/*     useEffect(()=> {
-        setTimeout(() => {
-            setNotificacoes([...notificacoes, 
-                {
-                    infos: {
-                        local:  "Canal 2",
-                        data: new Date(),
-                        distancia: 10,
-                        altura: 172,
-                        perigo: 78
-                    },
-                    status: "ultra",
-                },
-            ])
-        }, 5000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isChange]) ; 
 
-    }, [notificacoes]) ; */
+    useEffect(() =>{
+      
+        setTimeout(() => {
+            setOcorrenciasData([ocorrencias[0]]);
+        }, 10000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    
 
     useEffect(() => {
-        console.log("entrou", notificacoes);
-        if(notificacoes.length > 0) {
-          
-           /*  let index = notificacoes.findIndex(notificacao => notificacao.status === "ultra") */
-     /*        if(index < 0) {
-                index = notificacoes.length - 1
-                setStatusAtual('alert')
-            } else setStatusAtual('perigo') */
-            const newNotification = notificacoes[notificacoes.length -1];
+ 
+        if(ocorrenciasData.length > 0) {
+         
+            const newNotification = ocorrenciasData[ocorrenciasData.length - 1];
             if(newNotification.status==='pir') setStatusAtual('alert')
             else if(newNotification.status==='ultra')setStatusAtual('perigo')
             else setStatusAtual('safe')
-            console.log("uhh", notificacoes,newNotification)
+        
             setNotifyAtual(newNotification)
         }
-    }, [notificacoes])
+    }, [ocorrenciasData])
 
   
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    function handleOpenModal() {
-        setIsModalOpen(true);
-      }
-      function handleCloseModal() {
-        setIsModalOpen(false);
-      }
+  
    
     return (
         <Container>
@@ -108,21 +129,19 @@ export function Dashboard({ocorrencias}: PropsDashboard){
             <Main>
                 <div className="colunas"> 
                     <ul className="header">
-                    { notificacoes.map((notificacao, index) => {
-                        if (index > 3){
-                            return (<NotificacaoInvasao qtd={notificacoes.length - 1}
-                                infos={notificacao.infos} 
-                                onOpenModal={handleOpenModal} 
-                                type={notificacao.status}/>)
-                        }return<></>;
-                      
-                    })}
+                    {ocorrenciasData.length > 0 &&  (
+                        <NotificacaoInvasao 
+                                key={ocorrenciasData[ocorrenciasData.length - 1]}
+                                qtd={ocorrenciasData.length - 1}
+                                infos={ocorrenciasData[ocorrenciasData.length - 1].infos} 
+                                type={ocorrenciasData[ocorrenciasData.length - 1].status}/>
+                    )}
                        
                     </ul>
                     <div className="row">
                         <div className="coluna-1">
                             <ComponentStatus status={statusAtual} />
-                            <ComponentSquare style={{height: '300px'}} title="Seguranças Ativos" number={24}/> 
+                            <ComponentSquare style={{height: '300px'}} title="Seguranças Ativos" number={100}/> 
                         </div>
                         <div className="coluna-2">
                             <ComponentSquare style={{height: '200px'}} title="Total de Ocorrências" number={323}/> 
@@ -135,11 +154,7 @@ export function Dashboard({ocorrencias}: PropsDashboard){
 
                 </div>
             </Main>
-            <ModalOcorrencia
-                isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
-                ocorrencia={"Tal"}
-            />
+         
         </Container>
     )
 }
