@@ -56,11 +56,35 @@ export const ContainerSquareRelatorio = styled.div`
     justify-content: space-between;
 
     margin: 2rem 0;
+    
+    @media (max-width: 600px){
+      flex-direction: column;
+      .ant-select, .ant-picker {
+          width: 100% !important;
+      }
+    }
+    
+    .total-ocorencias {
+      padding-top: 1rem;
+      width: 100%;
+      text-align: right;
+    }
 
+    .filter {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      width: 100%;
+      
+      @media (max-width: 1000px){
+        flex-direction: column;
 
-    span {
+      }
+    }
+    p {
       font-size: 1.1rem;
       color: #4D4F6C; 
+      margin: 0;
 
       strong {
        color: #0F5481; 

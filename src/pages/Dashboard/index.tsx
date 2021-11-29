@@ -119,7 +119,7 @@ export function Dashboard(){
         }
         const id = (new Date().getTime() / 1000) * Math.random();
         const index = Math.floor(Math.random() * (ocorrencias.length - 1));
-        console.log("aaa", ocorrenciasData)
+
         if(ocorrenciasData.length >= 1) { 
             const newOcorrencia = {...ocorrencias[index], id}
             
@@ -131,9 +131,6 @@ export function Dashboard(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ocorrenciasData])
 
-  
-  
-   
     return (
         <Container>
             <Header activeScreen="dashboard"/>

@@ -1,75 +1,106 @@
 import { Table } from "antd";
+import { useState, useEffect } from "react";
 import {exportPDF } from '../../RelatorioPDF'
 import { ContainerSquareRelatorio } from "./styles";
+import { Select } from 'antd';
+import { DatePicker } from 'antd';
+
+import 'moment/locale/pt-br';
+import locale from 'antd/es/date-picker/locale/pt_BR';
+
+
+const { Option } = Select;
+const { RangePicker } = DatePicker;
+
 
 export function ComponentSquareRelatorio(){
-
   
   const data = [
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Alerta perigo",
       local: "Via 2 do canal",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1638223706470),
       confirmadoPor: "Rodrigo Alves"
    },
+   {
+    descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+    status: "Alerta perigo",
+    local: "Via 2 do canal",
+    dataHora: new Date(1637223705470),
+    confirmadoPor: "Rodrigo Alves"
+ },
+ {
+  descricao: "Pessoa entrou para fazer um reparo nas maquinas",
+  status: "Alerta perigo",
+  local: "Via 2 do canal",
+  dataHora: new Date(new Date(2021, 6, 15, 13, 45).getTime()),
+  confirmadoPor: "Rodrigo Alves"
+},
    {
     descricao: "Invasão de pessoa para fins não legais",
     status: "Alerta perigo",
     local: "Porteira dos canais",
-    dataHora: "10/11/2021 - 13:14",
+    dataHora: new Date(new Date(2021, 3, 10, 8, 15).getTime()),
     confirmadoPor: "Rodrigo Alves"
     },
     {
       descricao: "Descrição tal a respeito da ocorrência",
       status: "Alerta perigo",
       local: "Canal X",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(new Date(2021, 0, 29, 5, 25).getTime()),
       confirmadoPor: "Renato"
     },
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Alerta perigo",
       local: "Porteira dos canais",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1499000022111),
       confirmadoPor: "Rodrigo Alves"
     },
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Seguro",
       local: "Casa de motor dos canais",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1499110022111),
       confirmadoPor: "Chico Xavier"
     },
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Alerta perigo",
       local: "Canal X",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1399000022111),
       confirmadoPor: "Rodrigo Alves"
     },
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Seguro",
       local: "Porteira dos canais",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1299000022111),
       confirmadoPor: "Rodrigo Alves"
     },
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Alerta perigo",
       local: "Casa de motor dos canais",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1199000022111),
       confirmadoPor: "Chico Xavier"
     },
     {
       descricao: "Pessoa entrou para fazer um reparo nas maquinas",
       status: "Seguro",
       local: "Entrada principal",
-      dataHora: "10/11/2021 - 13:14",
+      dataHora: new Date(1199000111111),
       confirmadoPor: "Rodrigo Alves"
     },
   ]
+  
+  const [ocorreciasFiltradas, setOcorrenciasFiltradas] = useState<any[]>([])
+  
+  useEffect(() => {
+    preencher()
+  }, [])
+  
   const columns = [
     {
       title: 'Descrição',
@@ -101,15 +132,105 @@ export function ComponentSquareRelatorio(){
       key: 'confirmadoPor',
     }
   ]
+  
+  function preencher() {
+    data.forEach(value => {
+      let valor = {
+        descricao: value.descricao,
+        status: value.status,
+        local: value.local,
+        dataHora: `${value.dataHora.toLocaleDateString('pt-br')} -
+                   ${value.dataHora.getHours()}:${value.dataHora.getMinutes()}`,
+        confirmadoPor: value.confirmadoPor
+      }
+      setOcorrenciasFiltradas(ocorreciasFiltradas => [...ocorreciasFiltradas, valor])
+    })
+  }
+  
+  function handleChangeIntervalo(value: any) {
+    if(value !== null) {
+      setOcorrenciasFiltradas([])
+      const data1 = value[0]._d.getTime()
+      const data2 = value[1]._d.getTime()
+      
+      data.forEach(value => {
+        if(value.dataHora.getTime() >= data1 && value.dataHora.getTime() <= data2)  {
+          let valor = {
+            descricao: value.descricao,
+            status: value.status,
+            local: value.local,
+            dataHora: `${value.dataHora.toLocaleDateString('pt-br')} -
+                       ${value.dataHora.getHours()}:${value.dataHora.getMinutes()}`,
+            confirmadoPor: value.confirmadoPor
+          }
+          setOcorrenciasFiltradas(ocorreciasFiltradas => [...ocorreciasFiltradas, valor])
+        }
+      })
+    } else {
+      preencher()
+    }
+  }
+  
+  function handleChange(value: string) {
+    setOcorrenciasFiltradas([])
+    const dataAtual = new Date()
+    if(value === "Última Semana") {
+      const ultimaSemana = dataAtual.getDate() + 3 - (dataAtual.getDay() + 6) % 7
+      data.forEach(value => {
+        let UltimaSemanaAtual = value.dataHora.getDate() + 3 - (value.dataHora.getDay() + 6) % 7
+        if(ultimaSemana === UltimaSemanaAtual)  {
+          let valor = {
+            descricao: value.descricao,
+            status: value.status,
+            local: value.local,
+            dataHora: `${value.dataHora.toLocaleDateString('pt-br')} -
+                       ${value.dataHora.getHours()}:${value.dataHora.getMinutes()}`,
+            confirmadoPor: value.confirmadoPor
+          }
+          setOcorrenciasFiltradas(ocorreciasFiltradas => [...ocorreciasFiltradas, valor])
+        }
+      })
+    } else if(value === "Último Mês") {
+      data.forEach(value => {
+        if(dataAtual.getFullYear() === value.dataHora.getFullYear() && dataAtual.getMonth() === value.dataHora.getMonth())  {
+          let valor = {
+            descricao: value.descricao,
+            status: value.status,
+            local: value.local,
+            dataHora: `${value.dataHora.toLocaleDateString('pt-br')} -
+                       ${value.dataHora.getHours()}:${value.dataHora.getMinutes()}`,
+            confirmadoPor: value.confirmadoPor
+          }
+          setOcorrenciasFiltradas(ocorreciasFiltradas => [...ocorreciasFiltradas, valor])
+        }
+      })
+    } else if(value === "Último Ano") {
+      data.forEach(value => {
+        if(dataAtual.getFullYear() === value.dataHora.getFullYear())  {
+          let valor = {
+            descricao: value.descricao,
+            status: value.status,
+            local: value.local,
+            dataHora: `${value.dataHora.toLocaleDateString('pt-br')} -
+                       ${value.dataHora.getHours()}:${value.dataHora.getMinutes()}`,
+            confirmadoPor: value.confirmadoPor
+          }
+          setOcorrenciasFiltradas(ocorreciasFiltradas => [...ocorreciasFiltradas, valor])
+        }
+      })
+    } else {
+      preencher()
+    }
+  }
 
   return (
     <ContainerSquareRelatorio>
-  
+
         <section className='title-conatainer'>
           <h1>
             Relatório
           </h1>
-        <button onClick={() => exportPDF()}>
+        <button onClick={() => exportPDF(ocorreciasFiltradas)}>
             <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.125 1H8.625C7.92881 1 7.26114 1.27655 6.76886 1.76884C6.27658 2.26112 6 2.92881 6 3.625V24.625C6 25.3212 6.27658 25.9889 6.76886 26.4812C7.26114 26.9734 7.92881 27.25 8.625 27.25H24.375C25.0712 27.25 25.7389 26.9734 26.2311 26.4812C26.7234 25.9889 27 25.3212 27 24.625V8.875L19.125 1Z" stroke="#4D4F6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M19.125 1V8.875H27" stroke="#4D4F6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -123,30 +244,27 @@ export function ComponentSquareRelatorio(){
 
         <section className="infos-table">
           <div className="filter">
-            <span>Filtrar período por: </span>
-            <select>
-              <option value="tudo">
-                Tudo
-              </option>
-              <option value="ultimaSemana">
-                Última semana
-              </option>
-              <option value="ultimoMes">
-                Último mês
-              </option>
-              <option value="ultimos3meses">
-                Últimos 3 meses
-              </option>
-            </select>
+            <p>Filtrar Período: </p>
+            <Select defaultValue="Tudo" style={{ width: 170 }} onChange={handleChange}>
+              <Option value="Tudo">Tudo</Option>
+              <Option value="Última Semana">Última Semana</Option>
+              <Option value="Último Mês">Último Mês</Option>
+              <Option value="Último Ano">Último Ano</Option>
+            </Select>
+          </div>
+          
+          <div className="filter">
+            <p>Selecionar Intevalo: </p>
+            <RangePicker onChange={handleChangeIntervalo} locale={locale} style={{ width: 270 }}/>
           </div>
 
-          <span>Total de ocorencias: <strong>12</strong></span>
+          <span className="total-ocorencias">Total de ocorencias: <strong>12</strong></span>
         </section>
 
         <Table 
         
           columns={columns}
-          dataSource={data}
+          dataSource={ocorreciasFiltradas}
           pagination={{ position: ['bottomCenter'], pageSize: 8}}
             
         />
