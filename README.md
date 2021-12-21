@@ -8,13 +8,19 @@
 Como implantar sistemas de vigilância eletrônica em áreas isoladas, de difícil
 acesso/comunicação, com baixo custo de instalação, operação e manutenção?
 
-### Nossa solução
+### Nossa solução ⚛️ 
 
 Nossa solução é composta de duas vertentes: A parte física, e uma aplicação com uma Dashboard de monitoramento online;
 
 ### Você pode acessar a DEMO da aplicação clicando no link:
 
 https://sistema-seguranca-cogerh.vercel.app/
+
+### Tecnologias utilizadas: 
+  + ReactJS ⚛️ 
+  + Typescript
+  + Styled components 
+
 
 
 
